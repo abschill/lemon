@@ -1,9 +1,7 @@
 #include "App.hpp"
 
 void App::Start(int argc, char* argv[]) {
-
 	for (int i = 1; i < argc; ++i) {
-
 		// Get filename of the javascript file to run
 		const char* filename = argv[i];
 
@@ -15,7 +13,5 @@ void App::Start(int argc, char* argv[]) {
 
 		// Run the javascript file
 		this->RunJsFromFile(filename);
-
 	}
-
 }

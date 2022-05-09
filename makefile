@@ -28,4 +28,4 @@ export LIB
 export OBJ
 
 build:
-	$(CXX) -I $$INCLUDE $$APP -L $$LIB -l $$OBJ -std=c++0x -pthread -o lemon
+	$(CXX) -I $$INCLUDE $$APP -L $$LIB -l $$OBJ -std=c++20 -pthread -o lemon
