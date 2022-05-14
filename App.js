@@ -6,3 +6,5 @@
  *
  */
 version();
+
+console.log("Hello World");

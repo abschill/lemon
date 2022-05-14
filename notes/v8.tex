@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\title{v8 engine notes}
+\author{Alex }
+\date{May 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+\textbf{Local}
+
+A light-weight stack allocated object handle. All operations that return objects from within v8 return them in local handles. They are created within \textbf{HandleScopes}, and all local handles allocated within a handle scope are destroyed when the handle scope is destroyed. Hence it is not necessary to explicitly deallocate local handles. 
+
+\texttt{Handle}
+
+A handle is an object reference managed by the v8 garbage collector. All objects returned from the v8 have to be tracked by the garbage collector so that it knows that the objects are still alive. The garbage collector may move objects, so it is unsafe to point directly to an object. Instead, all objects are stored in handles which are known by the garbage collector and updated whenever an object moves. Handles should always be passed by value except in cases such as out-parameters, and they should never be heap-allocated. 
+
+There are 2 types of handles, \textbf{Local} and \textbf{Persistent} handles. Locals are light-weight and transient and typically used in local operations. They are managed by HandleScopes. Persistent handles can be used when storing objects across several independent operations that have to explicitly be deallocated when no longer in use. It is safe to extract the object stored in the handle by dereferencing the handle, for instance to extract the Object* from a Handle<Object>. The value will still be governed by a handle behind the scenes and the same rules apply to these values as to their handles. 
+
+\end{document}

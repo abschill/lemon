@@ -1,5 +1,11 @@
 #include "Lemon.hpp"
 
+/**
+ * @brief set global for a top-level function export from a given methodname ptr, callback void ptr with cast
+ *
+ * @param methodname  name for global
+ * @param callback callback to invoke at runtime when called from js
+ */
 void Lemon::CreateGlobalMethod(const char* methodname, void (*callback)(const FunctionCallbackInfo<Value>& args)) {
 
     this->GetGlobal()->Set(
@@ -87,7 +93,6 @@ bool Lemon::ExecuteString(Local<String> source, const char* filename) {
 bool Lemon::RunJsFromFile(const char* filename) {
 
     Local<String> source;
-    
     if (!Lemon::ReadFile(filename).ToLocal(&source))
         return false;
 
